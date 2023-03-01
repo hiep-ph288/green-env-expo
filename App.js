@@ -34,10 +34,10 @@ function App () {
           options={{
             headerTitle: () => <Header name="Green Env" />,
             headerStyle: {
-              height: 150,
-              borderBottomLeftRadius: 50,
-              borderBottomRightRadius: 50,
-              backgroundColor: "#00e4d0",
+              height: 100,
+              borderBottomLeftRadius: 20,
+              borderBottomRightRadius: 20,
+              backgroundColor: "#228B22",
               shadowColor: "#000",
               elevation: 25,
             },
@@ -49,10 +49,10 @@ function App () {
           options={{
             headerTitle: () => <Header name="Green Env" />,
             headerStyle: {
-              height: 150,
-              borderBottomLeftRadius: 50,
-              borderBottomRightRadius: 50,
-              backgroundColor: "#00e4d0",
+              height: 100,
+              borderBottomLeftRadius: 20,
+              borderBottomRightRadius: 20,
+              backgroundColor: "#228B22",
               shadowColor: "#000",
               elevation: 25,
             },
@@ -69,10 +69,10 @@ function App () {
           options={{
             headerTitle: () => <Header name="Green Env Dashboard" />,
             headerStyle: {
-              height: 150,
-              borderBottomLeftRadius: 50,
-              borderBottomRightRadius: 50,
-              backgroundColor: "#00e4d0",
+              height: 100,
+              borderBottomLeftRadius: 20,
+              borderBottomRightRadius: 20,
+              backgroundColor: "#228B22",
               shadowColor: "#000",
               elevation: 25,
             },

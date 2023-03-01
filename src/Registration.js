@@ -23,7 +23,7 @@ const Registration = () => {
           .auth()
           .currentUser.sendEmailVerification({
             handleCodeInApp: true,
-            url: "greenenv-expo.firebaseapp.com",
+            url: "https://greenenv-expo.firebaseapp.com/",
           })
           .then(() => {
             alert("Verification email sent");
@@ -34,7 +34,7 @@ const Registration = () => {
           .then(() => {
             firebase
               .firestore()
-              .collection("user")
+              .collection("users")
               .doc(firebase.auth().currentUser.uid)
               .set({
                 firstName,
