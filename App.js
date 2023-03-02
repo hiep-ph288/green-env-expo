@@ -1,93 +1,57 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useState, useEffect, Suspense } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { firebase } from "./firebase";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
 
-import Login from "./src/Login";
-import Registration from "./src/Registration";
-import Dashboard from "./src/Dashboard";
-import Header from "./components/Header";
+import LoginScreen from "./screens/LoginScreen";
+import SignupScreen from "./screens/SignupScreen";
+import WelcomeScreen from "./screens/WelcomeScreen";
+import { Colors } from "./constants/styles";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
-function App () {
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  }
-  useEffect(() => {
-    const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber;
-  }, []);
-  if (initializing) return null;
-
-  if (!user) {
-    return (
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{
-            headerTitle: () => <Header name="Green Env" />,
-            headerStyle: {
-              height: 100,
-              borderBottomLeftRadius: 20,
-              borderBottomRightRadius: 20,
-              backgroundColor: "#228B22",
-              shadowColor: "#000",
-              elevation: 25,
-            },
-          }}
-        />
-        <Stack.Screen
-          name="Registration"
-          component={Registration}
-          options={{
-            headerTitle: () => <Header name="Green Env" />,
-            headerStyle: {
-              height: 100,
-              borderBottomLeftRadius: 20,
-              borderBottomRightRadius: 20,
-              backgroundColor: "#228B22",
-              shadowColor: "#000",
-              elevation: 25,
-            },
-          }}
-        />
-      </Stack.Navigator>
-    );
-  }
+function AuthStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-          name="Dashboard"
-          component={Dashboard}
-          options={{
-            headerTitle: () => <Header name="Green Env Dashboard" />,
-            headerStyle: {
-              height: 100,
-              borderBottomLeftRadius: 20,
-              borderBottomRightRadius: 20,
-              backgroundColor: "#228B22",
-              shadowColor: "#000",
-              elevation: 25,
-            },
-          }}
-        />
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: Colors.primary500 },
+        headerTintColor: "white",
+        contentStyle: { backgroundColor: Colors.primary100 },
+      }}
+    >
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
     </Stack.Navigator>
-  )
-};
+  );
+}
 
-export default () => {
+function AuthenticatedStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: Colors.primary500 },
+        headerTintColor: "white",
+        contentStyle: { backgroundColor: Colors.primary100 },
+      }}
+    >
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function Navigation() {
   return (
     <NavigationContainer>
-      <App />
+      <AuthStack />
     </NavigationContainer>
-  )
-};
+  );
+}
 
-const styles = StyleSheet.create({});
+export default function App() {
+  return (
+    <>
+      <StatusBar style="light" />
+
+      <Navigation />
+    </>
+  );
+}
