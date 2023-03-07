@@ -11,10 +11,14 @@ import WelcomeScreen from "./screens/WelcomeScreen";
 import { Colors } from "./constants/styles";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 import IconButton from "./components/ui/IconButton";
+import AllPlace from "./screens/AllPlace";
+import AddPlace from "./screens/AddPlace";
+import Map from "./screens/Map";
 
 const Stack = createNativeStackNavigator();
 
 function AuthStack() {
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -39,7 +43,7 @@ function AuthenticatedStack() {
         contentStyle: { backgroundColor: Colors.primary100 },
       }}
     >
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Welcome"
         component={WelcomeScreen}
         options={{
@@ -52,7 +56,8 @@ function AuthenticatedStack() {
             />
           ),
         }}
-      />
+      /> */}
+      <Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   );
 }
