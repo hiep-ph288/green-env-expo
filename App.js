@@ -42,7 +42,6 @@ function AuthenticatedStack() {
         contentStyle: { backgroundColor: Colors.primary100 },
       }}
     >
-      <Stack.Screen name="Map" component={Map} />
       <Stack.Screen
         name="Welcome"
         component={WelcomeScreen}
@@ -61,20 +60,25 @@ function AuthenticatedStack() {
         name="AllPlace"
         component={AllPlace}
         options={({ navigation }) => ({
-          title: 'Your Favorite Place',
+          title: "Your Favorite Place",
           headerRight: ({ tintColor }) => (
             <IconButton
               icon="add"
               color={tintColor}
               size={24}
-              onPress={()=> navigation.navigate('AddPlace')}
+              onPress={() => navigation.navigate("AddPlace")}
             />
           ),
         })}
       />
-      <Stack.Screen name="AddPlace" component={AddPlace} options={{
-        title: 'Add a new Place',
-      }}/>
+      <Stack.Screen
+        name="AddPlace"
+        component={AddPlace}
+        options={{
+          title: "Add a new Place",
+        }}
+      />
+      <Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   );
 }
