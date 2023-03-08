@@ -1,9 +1,12 @@
 import React from "react";
 import MapView, { Callout } from "react-native-maps";
-import { StyleSheet, View, Text, Image, Alert } from "react-native";
+import { StyleSheet, View, Text, Image, Alert, Button } from "react-native";
 import { Marker } from "react-native-maps";
+import IconButton from "../components/ui/IconButton";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export default function App() {
+export default function Map({ navigation }) {
   const state = {
     coordinate: [
       { name: "1", latitude: 37.8025259, longitude: -122.4351431 },
@@ -14,37 +17,30 @@ export default function App() {
       { name: "6", latitude: 37.8025259, longitude: -122.4351431 },
     ],
   };
-  // const showWelcomeMessage = () => {
-  //   Alert.alert(
-  //     'Welcome to Loan Truong',
-  //     'This food is amazing',
-  //     [
-  //       {
-  //         text: 'Cancel',
-  //         style: 'cancel'
-  //       },
-  //       {
-  //         text: 'OK'
-  //       }
-  //     ]
-  //   )
-  // }
+  const region = {
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  };
 
   return (
     <View style={styles.container}>
       <MapView
         style={styles.map}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
+        initialRegion={region}
       >
         <Marker coordinate={{ latitude: 37.7825259, longitude: -122.4351431 }}>
-          <Callout >
-            <Image style={{width: 500, height: 500}} source={require('../assets/nhatan.jpg')}/>
+          <Callout>
+            <Image
+              style={{ width: 500, height: 500 }}
+              source={require("../assets/nhatan.jpg")}
+            />
             <Text>Nhatannn</Text>
+            <Button
+              title="Go welcome screen"
+              onPress={() => navigation.navigate("Welcome")}
+            />
           </Callout>
         </Marker>
       </MapView>

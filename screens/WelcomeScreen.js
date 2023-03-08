@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { AuthContext } from "../store/auth-context";
 
-function WelcomeScreen() {
+function WelcomeScreen({navigation}) {
   const [fetchedMessage, setFetchedMessage] = useState("");
   const authCtx = useContext(AuthContext);
   const token = authCtx.token;
@@ -23,6 +23,10 @@ function WelcomeScreen() {
       <Text style={styles.title}>Welcome!</Text>
       <Text>You authenticated successfully!</Text>
       <Text>{fetchedMessage}</Text>
+      <Button
+        title="Go Place"
+        onPress={() => navigation.navigate("AllPlace")}
+      />
     </View>
   );
 }

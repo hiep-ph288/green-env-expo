@@ -18,7 +18,6 @@ import Map from "./screens/Map";
 const Stack = createNativeStackNavigator();
 
 function AuthStack() {
-
   return (
     <Stack.Navigator
       screenOptions={{
@@ -43,7 +42,8 @@ function AuthenticatedStack() {
         contentStyle: { backgroundColor: Colors.primary100 },
       }}
     >
-      {/* <Stack.Screen
+      <Stack.Screen name="Map" component={Map} />
+      <Stack.Screen
         name="Welcome"
         component={WelcomeScreen}
         options={{
@@ -56,8 +56,25 @@ function AuthenticatedStack() {
             />
           ),
         }}
-      /> */}
-      <Stack.Screen name="Map" component={Map} />
+      />
+      <Stack.Screen
+        name="AllPlace"
+        component={AllPlace}
+        options={({ navigation }) => ({
+          title: 'Your Favorite Place',
+          headerRight: ({ tintColor }) => (
+            <IconButton
+              icon="add"
+              color={tintColor}
+              size={24}
+              onPress={()=> navigation.navigate('AddPlace')}
+            />
+          ),
+        })}
+      />
+      <Stack.Screen name="AddPlace" component={AddPlace} options={{
+        title: 'Add a new Place',
+      }}/>
     </Stack.Navigator>
   );
 }
