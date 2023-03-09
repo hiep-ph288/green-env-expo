@@ -7,14 +7,15 @@ import {
   useForegroundPermissions,
   PermissionStatus,
 } from "expo-location";
-import { getMapPreview } from "../../util/location";
+import { getAddress, getMapPreview } from "../../util/location";
 import {
   useNavigation,
   useRoute,
   useIsFocused,
 } from "@react-navigation/native";
+import MapView from "react-native-maps";
 
-const LocationPicker = () => {
+const LocationPicker = ({ onPickLocation }) => {
   const [pickedLocation, setPickedLocation] = useState();
   const isFocused = useIsFocused();
 
@@ -33,6 +34,19 @@ const LocationPicker = () => {
       setPickedLocation(mapPickedLocation);
     }
   }, [route, isFocused]);
+
+  useEffect(() => {
+    async function handleLocation() {
+      if (pickedLocation) {
+        const address = await getAddress(
+          pickedLocation.lat,
+          pickedLocation.lng
+        ); //huhu
+        onPickLocation({ ...pickedLocation, address: address });
+      }
+    }
+    handleLocation();
+  }, [pickedLocation, onPickLocation]);
 
   async function verifyPermission() {
     if (
@@ -70,11 +84,16 @@ const LocationPicker = () => {
 
   if (pickedLocation) {
     locationPreview = (
-      <Image
+      <MapView
         style={styles.image}
-        source={{
-          uri: getMapPreview(pickedLocation.lat, pickedLocation.lng),
+        initialRegion={{
+          latitude: pickedLocation.lat,
+          longitude: pickedLocation.lng,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
         }}
+
+        // getMapPreview(pickedLocation.lat, pickedLocation.lng)
       />
     );
   }

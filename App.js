@@ -14,6 +14,7 @@ import IconButton from "./components/ui/IconButton";
 import AllPlace from "./screens/AllPlace";
 import AddPlace from "./screens/AddPlace";
 import Map from "./screens/Map";
+import Web from "./screens/Web";
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +56,21 @@ function AuthenticatedStack() {
             />
           ),
         }}
+      />
+      <Stack.Screen
+        name="Web"
+        component={Web}
+        // options={({ navigation }) => ({
+        //   title: "Web View",
+        //   headerRight: ({ tintColor }) => (
+        //     <IconButton
+        //       icon="add"
+        //       color={tintColor}
+        //       size={24}
+        //       onPress={() => navigation.navigate("AddPlace")}
+        //     />
+        //   ),
+        // })}
       />
       <Stack.Screen
         name="AllPlace"
