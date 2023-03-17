@@ -1,24 +1,23 @@
-// Import the functions you need from the SDKs you need
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAF1BOS-4yH0mTbboUIfaF6MXBidoNV5Ec",
-  authDomain: "greenenv-expo.firebaseapp.com",
-  projectId: "greenenv-expo",
-  storageBucket: "greenenv-expo.appspot.com",
-  messagingSenderId: "326774506739",
-  appId: "1:326774506739:web:b7eff4db72ffea81762386",
+export const firebaseConfig = {
+  apiKey: "AIzaSyC1jWZI3yH5cxbeMMs5nsY44fA6kAnl6Kg",
+  authDomain: "lgbt-app-fea12.firebaseapp.com",
+  projectId: "lgbt-app-fea12",
+  storageBucket: "lgbt-app-fea12.appspot.com",
+  messagingSenderId: "560720405187",
+  appId: "1:560720405187:web:47cbf2e1d410d74d3cf876",
+  measurementId: "G-84N288JTYC",
 };
 
-// Initialize Firebase
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+const app = initializeApp(firebaseConfig);
 
-export { firebase };
+// Initialize Firebase
+export const firebaseApp = initializeApp(firebaseConfig);
+export const firestore = getFirestore(firebaseApp);
+export const firebaseAuth = getAuth(firebaseApp);
+export const storage = getStorage(firebaseApp);
